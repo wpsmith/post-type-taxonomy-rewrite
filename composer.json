@@ -13,10 +13,5 @@
     "require": {
         "wpsmith/single-term-taxonomy": "dev-master",
         "wpsmith/rewrite": "dev-master"
-    },
-    "autoload": {
-        "psr-4": {
-            "WPS\\Plugins\\Rewrite\\PostTypeTaxonomy\\": "includes/"
-        }
     }
 }
