@@ -13,11 +13,10 @@
 namespace WPS\Plugins\Rewrite\PostTypeTaxonomy;
 
 add_action( 'init', '\WPS\Plugins\Rewrite\PostTypeTaxonomy\register_cpt_landing_pages' );
+/**
+ * Register the Landing Pages Post Type.
+ */
 function register_cpt_landing_pages() {
-
-	/**
-	 * Post Type: Landing Pages.
-	 */
 
 	$labels = array(
 		'name'          => __( 'Landing Pages', 'wps' ),
@@ -41,24 +40,25 @@ function register_cpt_landing_pages() {
 		'exclude_from_search'   => true,
 		'capability_type'       => 'post',
 		'map_meta_cap'          => true,
-		'hierarchical'          => false,
-//		'rewrite'               => array( 'slug' => '/', 'with_front' => true ),
+		'hierarchical'          => true,
 		'rewrite'               => array( 'slug' => 'landing-page', 'with_front' => true ),
 		'query_var'             => true,
 		'menu_position'         => 5,
 		'supports'              => array( 'title', 'editor', 'thumbnail' ),
 		'taxonomies'            => array( 'campaign_type' ),
+		'menu_icon'             => 'dashicons-analytics',
 	);
 
 	register_post_type( 'landing_page', $args );
+
 }
 
 add_action( 'init', '\WPS\Plugins\Rewrite\PostTypeTaxonomy\register_tax_campaign_type' );
+/**
+ * Register the Campaign Type Custom Taxonomy.
+ */
 function register_tax_campaign_type() {
 
-	/**
-	 * Taxonomy: Campaign Types.
-	 */
 	$labels = array(
 		'name'          => __( 'Campaign Types', 'wps' ),
 		'singular_name' => __( 'Campaign Type', 'wps' ),
@@ -86,4 +86,5 @@ function register_tax_campaign_type() {
 	// Make taxonomy single term only.
 	// 'type' can be 'radio' or 'select' (default: radio)
 	new \WPS\Taxonomies\SingleTermTaxonomy( 'campaign_type', array( 'landing_page' ), 'radio' );
+
 }
