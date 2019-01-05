@@ -24,47 +24,104 @@ namespace WPS\Plugins\Rewrite\PostTypeTaxonomy;
 // Add autoloader.
 require 'vendor/autoload.php';
 
-// Require post types file.
-require_once 'resources.php';
+/**
+ * Does the resources rewrites.
+ */
+function do_resources() {
+	// Require post types file.
+	require_once 'resources.php';
 
-// Do the rewrite for resources.
-try {
+	// Do the rewrite for resources.
+	try {
 
-	$resource_resource_type = new \WPS\Rewrite\PostTypeByTaxonomy( array(
-		'post_type' => 'resource',
-		'taxonomy'  => 'resource_type',
-	) );
-	$resource_resource_type->set_order( [
-		'%post_type%',
-		'%term%',
-	] );
-	$resource_resource_type->add_all_rewrites();
+		// Create the rewrite object connecting the post type and taxonomy.
+		$resource_resource_type = new \WPS\Rewrite\PostTypeByTaxonomy( array(
+			'post_type' => 'resource',
+			'taxonomy'  => 'resource_type',
+		) );
 
-} catch ( \Exception $e ) {
-	// do nothing right now.
-	// @todo Maybe do something.
+		// Set the order of the rewrite to `%post_type%/%term%`. Defaults to `%term%/%post_type%`.
+		$resource_resource_type->set_order( [
+			'%post_type%',
+			'%term%',
+		] );
+
+		// Add all the rewrites. This includes the main, embed, feed, pagination, and date URLs.
+		$resource_resource_type->add_all_rewrites();
+
+	} catch ( \Exception $e ) {
+		// do nothing right now.
+		// @todo Maybe do something.
+	}
 }
 
-require_once 'landing-pages.php';
+// Do it!
+do_resources();
 
-// Do the rewrite for landing pages.
-try {
+/**
+ * Does the landing-pages rewrites.
+ */
+function do_landing_pages() {
+	// Require post types file.
+	require_once 'landing-pages.php';
 
-	$landing_page_campaign_type = new \WPS\Rewrite\PostTypeByTaxonomy( array(
-		'post_type' => 'landing_page',
-		'taxonomy'  => 'campaign_type',
-	) );
+	// Do the rewrite for landing pages.
+	try {
 
-	$landing_page_campaign_type->set_order( [
-		'%term%',
-		'%post_type%',
-	] );
+		// Create the rewrite object connecting the post type and taxonomy.
+		$landing_page_campaign_type = new \WPS\Rewrite\PostTypeByTaxonomy( array(
+			'post_type' => 'landing_page',
+			'taxonomy'  => 'campaign_type',
+		) );
 
+		// Set the order of the rewrite to `%post_type%/%term%`. Defaults to `%term%/%post_type%`.
+		$landing_page_campaign_type->set_order( [
+			'%term%',
+		] );
 
-} catch ( \Exception $e ) {
-	// do nothing right now.
-	// @todo Maybe do something.
+		// Add the feed/embed rewrite URLs.
+		$landing_page_campaign_type->add_embed_rewrites();
+		$landing_page_campaign_type->add_feed_rewrites();
+
+	} catch ( \Exception $e ) {
+		// do nothing right now.
+		// @todo Maybe do something.
+	}
 }
+
+// Do it!
+do_landing_pages();
+
+/**
+ * Does the videos rewrites.
+ */
+function do_videos() {
+	// Require post types file.
+	require_once 'videos.php';
+
+	// Do the rewrite for landing pages.
+	try {
+
+		// Create the rewrite object connecting the post type and taxonomy.
+		$videos = new \WPS\Rewrite\PostTypeRewrite( array(
+			'post_type' => 'video',
+		) );
+
+		// Add a prefix.
+		$videos->set_prefix( 'my-prefix' );
+
+		// Add all the rewrites. This includes the main, embed, feed, pagination, and date URLs.
+		$videos->add_all_rewrites();
+
+
+	} catch ( \Exception $e ) {
+		// do nothing right now.
+		// @todo Maybe do something.
+	}
+}
+
+// Do it!
+do_videos();
 
 register_activation_hook( __FILE__, '\WPS\Plugins\Rewrite\PostTypeTaxonomy\on_activation' );
 /**
@@ -80,12 +137,11 @@ function on_activation() {
 
 	// Resources.
 	register_tax_resource_type();
-	register_tax_resource_topic();
-	register_tax_library_tag();
 	register_cpt_resource();
 
-	// Videos.
-	register_cpt_video();
+	// Videos
+	register_cpt_videos();
+
 
 	// Flush the rules.
 	flush_rewrite_rules();
