@@ -15,9 +15,9 @@ namespace WPS\Plugins\Rewrite\PostTypeTaxonomy;
 add_action( 'init', '\WPS\Plugins\Rewrite\PostTypeTaxonomy\register_tax_resource_type' );
 /**
  * Register the Resource Type taxonomy
- *
  */
 function register_tax_resource_type() {
+
 	$labels = array(
 		'name'                       => __( 'Resource Types', 'wps' ),
 		'singular_name'              => __( 'Type', 'wps' ),
@@ -35,6 +35,7 @@ function register_tax_resource_type() {
 		'choose_from_most_used'      => __( 'Choose from most used Types', 'wps' ),
 		'menu_name'                  => __( 'Types', 'wps' ),
 	);
+
 	$args = array(
 		'labels'            => $labels,
 		'public'            => true,
@@ -45,18 +46,18 @@ function register_tax_resource_type() {
 		'rewrite'           => array( 'slug' => 'resource-type', 'with_front' => false ),
 		'query_var'         => true,
 		'show_admin_column' => true,
-		// 'meta_box_cb'    => false,
 	);
+
 	register_taxonomy( 'resource_type', array( 'resource' ), $args );
+
 }
 
 add_action( 'init', '\WPS\Plugins\Rewrite\PostTypeTaxonomy\register_cpt_resource' );
 /**
  * Register the custom post type
- *
- * @since 1.2.0
  */
 function register_cpt_resource() {
+
 	$labels = array(
 		'name'               => __( 'Resources', 'wps' ),
 		'singular_name'      => __( 'Resource', 'wps' ),
@@ -71,6 +72,7 @@ function register_cpt_resource() {
 		'parent_item_colon'  => __( 'Parent Resource:', 'wps' ),
 		'menu_name'          => __( 'Resources', 'wps' ),
 	);
+
 	$args = array(
 		'labels'              => $labels,
 		'hierarchical'        => true,
@@ -87,5 +89,7 @@ function register_cpt_resource() {
 		'rewrite'             => array( 'slug' => 'resource', 'with_front' => false ),
 		'menu_icon'           => 'dashicons-format-aside',
 	);
+
 	register_post_type( 'resource', $args );
+
 }
