@@ -1,0 +1,22 @@
+{
+    "name": "wpsmith/post-type-taxonomy-rewrite",
+    "description": "Rewrite for {taxonomy}/{postname} rewrites.",
+    "type": "project",
+    "license": "GPLv2+",
+    "authors": [
+        {
+            "name": "Travis Smith",
+            "email": "t@wpsmith.net"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "wpsmith/single-term-taxonomy": "dev-master",
+        "wpsmith/rewrite": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "WPS\\Plugins\\Rewrite\\PostTypeTaxonomy\\": "includes/"
+        }
+    }
+}

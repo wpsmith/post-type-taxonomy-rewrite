@@ -1,0 +1,107 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "fbc0680e15c916baf28a79408d76893d",
+    "packages": [
+        {
+            "name": "wpsmith/rewrite",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wpsmith/Rewrite.git",
+                "reference": "d2984b6b581463731207f9c5ef3a954649055949"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wpsmith/Rewrite/zipball/d2984b6b581463731207f9c5ef3a954649055949",
+                "reference": "d2984b6b581463731207f9c5ef3a954649055949",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "WPS\\Rewrite\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Travis Smith",
+                    "email": "t@wpsmith.net",
+                    "homepage": "https://wpsmith.net/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "WordPress rewrite.",
+            "homepage": "https://github.com/wpsmith/Rewrite",
+            "keywords": [
+                "rewrite",
+                "wordpress"
+            ],
+            "time": "2019-01-04T18:57:29+00:00"
+        },
+        {
+            "name": "wpsmith/single-term-taxonomy",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wpsmith/SingleTermTaxonomy.git",
+                "reference": "fd82a643b04852c62238670fbc01dd816e5c5d90"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wpsmith/SingleTermTaxonomy/zipball/fd82a643b04852c62238670fbc01dd816e5c5d90",
+                "reference": "fd82a643b04852c62238670fbc01dd816e5c5d90",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "WPS\\Taxonomies\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Travis Smith",
+                    "email": "t@wpsmith.net",
+                    "homepage": "https://wpsmith.net/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "WordPress Single Term Taxonomy.",
+            "homepage": "https://github.com/wpsmith/SingleTermTaxonomy",
+            "keywords": [
+                "taxonomy",
+                "wordpress"
+            ],
+            "time": "2019-01-04T18:40:56+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "dev",
+    "stability-flags": {
+        "wpsmith/single-term-taxonomy": 20,
+        "wpsmith/rewrite": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}
